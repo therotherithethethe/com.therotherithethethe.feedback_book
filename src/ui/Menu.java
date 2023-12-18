@@ -2,16 +2,30 @@ package ui;
 
 import dal.DbManipulation;
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+/**
+ * Цей клас надає інтерфейс меню для роботи з базою даних.
+ */
 public class Menu {
+    /**
+     * Сканер для считування введених даних в термінал.
+     */
     private static final Scanner scanner = new Scanner(System.in);
+    /**
+     * Файл бази даних.
+     */
     private static final File db = new File("db.txt");
+    /**
+     * Змінення вигляду тексту.
+     */
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
+    /**
+     * Відображає головне меню і обробляє введення користувача для різних операцій.
+     */
 
     public static void printMenu() {
         System.out.println(ANSI_RESET + "1. Переглянути усі відгуки.\n2. Додати відгук.");
@@ -22,6 +36,9 @@ public class Menu {
         }
         printMenu();
     }
+    /**
+     * Обробляє додавання нового відгуку від користувача.
+     */
     private static void addFeedback() {
         System.out.println("Введіть ім'я користувача:");
         String name = scanner.nextLine();
@@ -83,6 +100,9 @@ public class Menu {
             System.out.println("Дякуємо");
         }
     }
+    /**
+     * Зчитує та відображає відгуки з бази даних.
+     */
     private static void readFeedbacks() {
         try{
             String[] text = DbManipulation.dbToString(db).split("\n");
