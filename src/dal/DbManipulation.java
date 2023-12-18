@@ -1,7 +1,9 @@
 package dal;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class DbManipulation {
@@ -22,16 +24,15 @@ public class DbManipulation {
         return text.toString();
     }
 
-//    public static void writeToDb(Person person, String feedbackTxt) {
-//        try(BufferedWriter bw = new BufferedWriter(new FileWriter("db.txt")))
-//        {
-//            String text;
-//            bw.write(text);
-//        }
-//        catch(IOException ex){
-//
-//            System.out.println(ex.getMessage());
-//        }
-//    }
+    public static void writeFeedBackToDb(String name, String password, String feedbackTxt) {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("db.txt", true)))
+        {
+            bw.append(name).append(password).append(feedbackTxt);
+        }
+        catch(IOException ex){
+
+            System.out.println(ex.getMessage());
+        }
+    }
 
 }
